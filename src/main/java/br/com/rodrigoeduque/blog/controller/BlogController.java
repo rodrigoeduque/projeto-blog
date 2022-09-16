@@ -43,9 +43,10 @@ public class BlogController {
     }
 
     @PostMapping("/newpost")
-    public String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributesS){
+    public String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributes) {
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("mensagem", "Verifique se os campos foram preenchidos corretamente");
             return "redirect:/newpost";
         }
         post.setDataCriacao(LocalDate.now());
